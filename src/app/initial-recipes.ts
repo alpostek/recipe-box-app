@@ -1,4 +1,6 @@
-let initialRecipes = [
+import {IRecipe} from './recipe';
+
+export const initialRecipes : IRecipe[] = [
     {
         "id": 1,
         "name": "Banana French Toast",
@@ -20,4 +22,4 @@ let initialRecipes = [
 
 ]
 
-export default initialRecipes;
+//export default initialRecipes;
