@@ -1,0 +1,22 @@
+<div class="recipe__listContainer">
+    <div class="recipe__list" *ngIf='recipes.length > 0'>
+        <p class="recipe__listTitle">
+            Have a look at your saved recipes...
+        </p>
+        <div class="recipe__card" *ngFor="let recipe of recipes">
+                <p>
+                    {{recipe.name}}
+                </p>
+                <a href='{{recipe.source}}' target="blank" class="recipe__link">
+                    Link to recipe
+                </a>
+                <div style='background-image: url({{recipe.img}});'
+                class="recipe__image">
+                    <a [routerLink]="['/', recipe.id]" class="recipe__detailsLink">
+
+                    </a>
+                </div>
+                
+        </div>
+    </div>
+</div>
