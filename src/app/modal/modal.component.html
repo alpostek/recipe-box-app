@@ -1,0 +1,10 @@
+<ng-container *ngIf="display$ | async as display">
+    <section [class.open]="display === true"
+           (click)="close()">
+            <div class="modal" click="$event.stopPropagation()">
+                    <button class="close" (click)="close()" >close</button>
+                    <app-recipe-form></app-recipe-form>
+            </div>
+    </section>
+</ng-container>
+    

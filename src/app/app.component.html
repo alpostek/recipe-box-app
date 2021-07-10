@@ -1,8 +1,14 @@
 <nav class="navbar">
-  <h1>Recipe Box App</h1>
-  <p>Store links to recipes you want to try out!</p>
+  <div class="container container--navbar">
+    <div class="navbar__info">
+      <h1>Recipe Box App</h1>
+      <p class="navbar__subheader">Store links to recipes you want to try out!</p>
+    </div>
+    <button class="button button--add" (click)="showForm()">Add new recipe</button>
+  </div>
 </nav>
 
 <div class="container">
   <router-outlet></router-outlet>
+  <app-modal></app-modal>
 </div>

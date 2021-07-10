@@ -10,13 +10,16 @@ import { RecipeService } from '../recipe.service';
 })
 export class RecipeDetailsComponent implements OnInit {
   recipe: IRecipe | undefined;
-  //recipe: IRecipe[] = [];
   recipeTitle: string = 'Full recipe for'
 
-  constructor(private route: ActivatedRoute, private recipeService: RecipeService) { }
+  constructor(private route: ActivatedRoute, private recipeService: RecipeService, private router: Router) { }
 
   getRecipe(id: number): void{
     this.recipe = this.recipeService.getRecipe(id);
+  }
+
+  onBack(): void{
+    this.router.navigate(['/'])
   }
 
   ngOnInit(): void {
