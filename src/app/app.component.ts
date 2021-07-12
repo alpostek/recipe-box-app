@@ -8,7 +8,7 @@ import { ModalService } from './modal.service';
 })
 export class AppComponent {
   title = 'recipe-box-app';
-
+  
   constructor(private modalService: ModalService){}
   
   showForm(){

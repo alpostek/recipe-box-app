@@ -1,4 +1,4 @@
-<div class="recipe__listContainer">
+<div class="recipe__listContainer" >
     <div class="recipe__list" *ngIf='recipes.length > 0'>
         <p class="recipe__listTitle">
             Have a look at your saved recipes...
@@ -15,7 +15,8 @@
                     <a [routerLink]="['/', recipe.id]" class="recipe__detailsLink">
                     </a>
                 </div>
-                
         </div>
     </div>
+    <app-modal (addRecipeFromForm)="addRecipeFromForm($event)">
+    </app-modal>
 </div>

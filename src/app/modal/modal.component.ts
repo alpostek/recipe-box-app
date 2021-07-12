@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ModalService } from '../modal.service';
+import { IRecipe } from '../recipe';
 
 @Component({
   selector: 'app-modal',
@@ -8,6 +9,8 @@ import { ModalService } from '../modal.service';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
+  @Output() addRecipeFromForm = new EventEmitter();
+
   display$: Observable<boolean>;
 
   constructor(private modalService: ModalService) {
@@ -20,5 +23,10 @@ export class ModalComponent implements OnInit {
   close(){
     this.modalService.close();
   }
+
+  passDataFromFormToList(event: Event){
+    this.addRecipeFromForm.emit(event);
+  }
+
 
 }

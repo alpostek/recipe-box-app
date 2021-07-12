@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from '../local-storage.service';
 import { IRecipe } from '../recipe';
 import { RecipeService } from '../recipe.service';
 
@@ -9,17 +10,33 @@ import { RecipeService } from '../recipe.service';
   styleUrls: ['./recipe-list.component.scss']
 })
 export class RecipeListComponent implements OnInit {
-
-  constructor(private recipesService: RecipeService ) { }
-  
   recipes: IRecipe[] = [];
+  counter!: number;
 
+  constructor(private recipesService: RecipeService, private storageService: LocalStorageService ) { 
+    
+  }
+  
   getRecipes():void{
+    //this.recipes = this.storageService.get();
     this.recipes = this.recipesService.getRecipes();
+  }
+
+
+
+  addRecipeFromForm(recipeFromForm: IRecipe){
+    
+    this.counter++;
+    console.log(recipeFromForm);
+    recipeFromForm.id = this.counter;
+    this.recipesService.addRecipe(recipeFromForm);
+    //this.storageService.set(recipeFromForm);
+    console.log(this.recipes);
   }
 
   ngOnInit(): void {
     this.getRecipes();
+    this.counter = this.recipes.length;
   }
 
 }

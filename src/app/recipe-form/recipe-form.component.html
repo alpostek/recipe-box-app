@@ -1,3 +1,4 @@
-<input type="text" placeholder="Recipe title">
-                    <input type="text" placeholder="Link to recipe">
-                    <input type="text" placeholder="Link to image">
+<input type="text" placeholder="Recipe title" name="recipeTitle" [(ngModel)]="recipeTitle">
+<input type="text" placeholder="Link to recipe"  [(ngModel)]="recipeLink">
+<input type="text" placeholder="Link to image"  [(ngModel)]="recipeImage">
+<button type="button" (click)=handleSubmit()>Submit</button>

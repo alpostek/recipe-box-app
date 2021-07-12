@@ -27,7 +27,6 @@ export class RecipeDetailsComponent implements OnInit {
     this.recipeTitle += `: ${id}`;
     if(id){
       this.getRecipe(id)
-      console.log(this.recipe)
      }  
   }
 
