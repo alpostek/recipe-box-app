@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { LocalStorageService } from '../local-storage.service';
 import { IRecipe } from '../recipe';
 import { ModalService } from '../modal.service';
 

@@ -1,8 +1,9 @@
 <div class="details__card">
-    <div class="details__header">
-        {{recipe?.name}}
-        <a href="{{recipe?.source}}">Link to recipe</a>
-        <div class="recipe__image" style='background-image: url({{recipe?.img}});'></div>
+    <div class="details__header" *ngIf='recipe' id="{{recipe.id}}">
+        {{recipe.name}}
+        <a href="{{recipe.source}}">Link to recipe</a>
+        <div class="recipe__image" style='background-image: url({{recipe.img}});'></div>
         <button class="back" (click)='onBack()'>Back to list</button>
+        <button class="delete" (click)='onDelete(recipe.id)'>Delete</button>
     </div>
 </div>

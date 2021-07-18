@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {  ActivatedRoute, Router } from '@angular/router';
+import { Output, EventEmitter } from '@angular/core';
 import { IRecipe } from '../recipe';
-import { RecipeService } from '../recipe.service';
+import { LocalStorageService } from '../local-storage.service';
 
 @Component({
   selector: 'app-recipe-details',
@@ -10,26 +11,37 @@ import { RecipeService } from '../recipe.service';
 })
 export class RecipeDetailsComponent implements OnInit {
   recipe: IRecipe | undefined;
-  recipeTitle: string = 'Full recipe for'
+  recipeTitle: string = 'Full recipe for';
+  @Output() onDeletedRecipe = new EventEmitter();
 
-  constructor(private route: ActivatedRoute, private recipeService: RecipeService, private router: Router) { }
+  constructor(private route: ActivatedRoute,  private router: Router, private storageService: LocalStorageService) {
+    
+   }
 
   getRecipe(id: number): void{
-    this.recipe = this.recipeService.getRecipe(id);
+    this.recipe = this.storageService.getRecipe(id);
+    console.log(this.recipe)
   }
 
   onBack(): void{
     this.router.navigate(['/'])
   }
 
+  onDelete(id: number): void{
+    this.storageService.delete(id);
+    this.onBack();
+  }
+
+  onAll(){
+    console.log(this.storageService.getAll())
+  }
+
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.recipeTitle += `: ${id}`;
-    if(id){
-      this.getRecipe(id)
+    if(id >= 0){
+      this.getRecipe(id);
      }  
   }
-
-
 
 }

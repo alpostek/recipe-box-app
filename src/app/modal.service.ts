@@ -12,6 +12,7 @@ export class ModalService {
     return this.display.asObservable();
   }
   open(){
+    console.log("open")
     this.display.next(true);
   }
   close(){
