@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ModalService } from '../modal.service';
-import { IRecipe } from '../recipe';
 
 @Component({
   selector: 'app-modal',

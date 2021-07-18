@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {  ActivatedRoute, Router } from '@angular/router';
 import { IRecipe } from '../recipe';
-import { RecipeService } from '../recipe.service';
+import { LocalStorageService } from '../local-storage.service';
 
 @Component({
   selector: 'app-recipe-details',
@@ -12,14 +12,21 @@ export class RecipeDetailsComponent implements OnInit {
   recipe: IRecipe | undefined;
   recipeTitle: string = 'Full recipe for'
 
-  constructor(private route: ActivatedRoute, private recipeService: RecipeService, private router: Router) { }
+  constructor(private route: ActivatedRoute,  private router: Router, private storageService: LocalStorageService) {
+    
+   }
 
   getRecipe(id: number): void{
-    this.recipe = this.recipeService.getRecipe(id);
+    this.recipe = this.storageService.getRecipe(id);
   }
 
   onBack(): void{
     this.router.navigate(['/'])
+  }
+
+  onDelete(id: number): void{
+    this.storageService.delete(id);
+    this.onBack();
   }
 
   ngOnInit(): void {
@@ -29,7 +36,5 @@ export class RecipeDetailsComponent implements OnInit {
       this.getRecipe(id)
      }  
   }
-
-
 
 }
