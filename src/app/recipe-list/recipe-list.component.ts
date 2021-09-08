@@ -17,7 +17,6 @@ export class RecipeListComponent implements OnInit {
   
   getRecipes():void{
     this.recipes = this.storageService.getAll();
-    console.log(this.storageService.getAll())
   }
 
   addRecipeFromForm(recipeFromForm: IRecipe){
