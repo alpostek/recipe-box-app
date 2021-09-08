@@ -20,7 +20,6 @@ export class RecipeDetailsComponent implements OnInit {
 
   getRecipe(id: number): void{
     this.recipe = this.storageService.getRecipe(id);
-    console.log(this.recipe)
   }
 
   onBack(): void{

@@ -4,7 +4,7 @@
       <h1>Recipe Box App</h1>
       <p class="navbar__subheader">Store links to recipes you want to try out!</p>
     </div>
-    <button class="button button--add" (click)="showForm()">Add new recipe</button>
+    <button *ngIf="showAddButton" class="button button--add" (click)="showForm()">Add new recipe</button>
   </div>
 </nav>
 

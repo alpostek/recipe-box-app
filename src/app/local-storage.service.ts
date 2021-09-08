@@ -22,12 +22,12 @@ export class LocalStorageService {
     this.storedRecipes = recipesJSON !== null ? 
     JSON.parse(recipesJSON) : initialRecipes;
     this.recipesSubject = new BehaviorSubject(this.storedRecipes)
-    console.log(this.storedRecipes)
   }
   
   set(recipe: IRecipe){
     this.storedRecipes.push(recipe);
     localStorage.setItem(this.storageName, JSON.stringify(this.storedRecipes));
+    this.recipesSubject.next(this.storedRecipes);
   }
   getAll(){
     console.log(this.storedRecipes)
@@ -36,8 +36,6 @@ export class LocalStorageService {
   getRecipe(passedId: number){
     let recipeById = this.storedRecipes.find(x => x.id === passedId);
     return recipeById;
-    
-    //return this.storedRecipes[id];
   } 
   
   delete(id: number){

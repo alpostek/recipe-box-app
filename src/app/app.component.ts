@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { ModalService } from './modal.service';
 
 @Component({
@@ -8,11 +9,23 @@ import { ModalService } from './modal.service';
 })
 export class AppComponent {
   title = 'recipe-box-app';
+  public showAddButton: boolean = true;
   
-  constructor(private modalService: ModalService){}
+  constructor(private modalService: ModalService, private router: Router){
+    router.events.subscribe(e => {
+     if(e instanceof NavigationEnd){
+      if(this.router.url !== '/'){
+        this.showAddButton = false;
+      } else{
+        this.showAddButton = true;
+      }
+     }
+    })
+  }
   
   showForm(){
     this.modalService.open();
   }
+ 
 }
 
