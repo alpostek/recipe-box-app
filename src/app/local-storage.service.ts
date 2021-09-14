@@ -33,15 +33,18 @@ export class LocalStorageService {
     console.log(this.storedRecipes)
     return this.storedRecipes;
   }
-  getRecipe(passedId: number){
-    let recipeById = this.storedRecipes.find(x => x.id === passedId);
-    return recipeById;
+  getRecipe(passedName: string){
+    let recipeByName = this.storedRecipes.find(x => x.name === passedName);
+    return recipeByName;
+
   } 
   
-  delete(id: number){
-    const recipesWithoutRemoved = this.storedRecipes.filter(item => item.id !== id);
-    localStorage.setItem(this.storageName, JSON.stringify(recipesWithoutRemoved));
-    this.recipesSubject.next(this.storedRecipes = recipesWithoutRemoved);
+  delete(passedName: string){
+    const idx = this.storedRecipes.findIndex(x => x.name === passedName);
+    this.storedRecipes.splice(idx, 1);
+    
+    localStorage.setItem(this.storageName, JSON.stringify(this.storedRecipes));
+    this.recipesSubject.next(this.storedRecipes);
   }
 
 }

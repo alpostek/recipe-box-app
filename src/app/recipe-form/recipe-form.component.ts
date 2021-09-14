@@ -21,7 +21,7 @@ export class RecipeFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.recipe = {
-      id: 0,
+     
       name: "",
       source: "",
       img: ""

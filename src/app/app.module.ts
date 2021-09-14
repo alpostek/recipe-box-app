@@ -25,7 +25,7 @@ import { RecipeFormComponent } from './recipe-form/recipe-form.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: RecipeListComponent  },
-      { path: ':id', component: RecipeDetailsComponent}
+      { path: ':name', component: RecipeDetailsComponent}
     ]),
   ],
   providers: [],

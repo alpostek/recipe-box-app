@@ -18,16 +18,16 @@ export class RecipeDetailsComponent implements OnInit {
     
    }
 
-  getRecipe(id: number): void{
-    this.recipe = this.storageService.getRecipe(id);
+  getRecipe(name: string): void{
+    this.recipe = this.storageService.getRecipe(name);
   }
 
   onBack(): void{
     this.router.navigate(['/'])
   }
 
-  onDelete(id: number): void{
-    this.storageService.delete(id);
+  onDelete(name: string): void{
+    this.storageService.delete(name);
     this.onBack();
   }
 
@@ -36,11 +36,10 @@ export class RecipeDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.recipeTitle += `: ${id}`;
-    if(id >= 0){
-      this.getRecipe(id);
-     }  
+    const passedName = String(this.route.snapshot.paramMap.get('name'));
+    if(passedName){
+      this.getRecipe(passedName)
+    }  
   }
 
 }
