@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { IRecipe } from '../recipe';
 import { ModalService } from '../modal.service';
+import { FormControl, NgForm, NgModel } from '@angular/forms';
+import { LocalStorageService } from '../local-storage.service';
 
 @Component({
   selector: 'app-recipe-form',
@@ -10,29 +12,35 @@ import { ModalService } from '../modal.service';
 
 export class RecipeFormComponent implements OnInit {
   @Output() recipeAddEvent = new EventEmitter();
-  recipe!: IRecipe;
+
   recipeTitle!: string;
   recipeLink!: string;
   recipeImage!: string;
 
-  constructor(private modalService: ModalService) {
-    
+  initialRecipe: IRecipe = {
+    name: "",
+    source: "",
+    img: ""
+  }
+
+  recipe: IRecipe = {...this.initialRecipe}
+
+  constructor(private modalService: ModalService, private storageService: LocalStorageService) {
    }
 
   ngOnInit(): void {
-    this.recipe = {
-     
-      name: "",
-      source: "",
-      img: ""
-    }
+   
   }
-  handleSubmit(){
-    this.recipe.name = this.recipeTitle;
-    this.recipe.source = this.recipeLink;
-    this.recipe.img = this.recipeImage;
-    this.recipeAddEvent.emit(this.recipe);
-    this.modalService.close();
+
+  handleSubmit(form: NgForm){
+    console.log('in on Submit ', form.valid);
+    if (form.valid){
+      this.recipeTitle = this.recipeTitle;
+      this.recipeLink = this.recipeLink;
+      this.recipeImage = this.recipeImage;
+      this.recipeAddEvent.emit(this.recipe);
+      this.modalService.close();
+    }
   }
 
 }

@@ -1,4 +1,39 @@
-<input type="text" placeholder="Recipe title" name="recipeTitle" [(ngModel)]="recipeTitle">
-<input type="text" placeholder="Link to recipe"  [(ngModel)]="recipeLink">
-<input type="text" placeholder="Link to image"  [(ngModel)]="recipeImage">
-<button type="button" (click)=handleSubmit()>Submit</button>
+<form #form="ngForm" (ngSubmit)="handleSubmit(form)">
+    <div class="form-group">
+        <label for="recipeTitle">
+            Recipe Title
+        </label>
+        <input id="recipeTitle" type="text" required
+        placeholder="Recipe title" 
+        name="recipeTitle"
+        #titleField="ngModel"
+        [(ngModel)]="recipe.name"
+        [class.field-error]="form.submitted && titleField.invalid"
+        >
+        <div [hidden]="!form.submitted || titleField.valid">
+            Enter title
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="recipeLink">
+            Link to recipe
+        </label>
+        <input type="text" placeholder="Link to recipe" required 
+        name="recipeLink"
+        [(ngModel)]="recipe.source"
+        #linkField="ngModel"
+        [class.field-error]="form.submitted && linkField.invalid"
+        >
+        <div [hidden]="!form.submitted || linkField.valid">
+            Enter link
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="recipeImage">Link to image</label>
+        <input type="text" placeholder="Link to image"
+        #imageField="ngModel" 
+        name="recipeImage"  [(ngModel)]="recipe.img">
+    </div>
+    <button>Submit</button>
+</form>
+
