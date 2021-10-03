@@ -8,10 +8,14 @@
         name="recipeTitle"
         #titleField="ngModel"
         [(ngModel)]="recipe.name"
+        appRecipeTitleValidator
         [class.field-error]="form.submitted && titleField.invalid"
         >
-        <div [hidden]="!form.submitted || titleField.valid">
+        <div *ngIf="form.submitted && titleField.hasError('required')">
             Enter title
+        </div>
+        <div *ngIf="form.submitted && titleField.hasError('recipeTitleValidator')">
+            Title must be unique
         </div>
     </div>
     <div class="form-group">
@@ -24,7 +28,7 @@
         #linkField="ngModel"
         [class.field-error]="form.submitted && linkField.invalid"
         >
-        <div [hidden]="!form.submitted || linkField.valid">
+        <div *ngIf="form.submitted && linkField.invalid">
             Enter link
         </div>
     </div>
