@@ -5,5 +5,8 @@
         <div class="recipe__image" style='background-image: url({{recipe.img}});'></div>
         <button class="back" (click)='onBack()'>Back to list</button>
         <button class="delete" (click)='onDelete(recipe.name)'>Delete</button>
+        <button class="edit" (click)='showForm()'>Edit</button>
     </div>
 </div>
+<app-modal (addRecipeFromForm)="addRecipeFromForm(recipe!.name, $event)" >
+</app-modal>

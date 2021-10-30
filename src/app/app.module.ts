@@ -11,6 +11,7 @@ import { RecipeDetailsComponent } from './recipe-details/recipe-details.componen
 import { ModalComponent } from './modal/modal.component';
 import { RecipeFormComponent } from './recipe-form/recipe-form.component';
 import { RecipeTitleValidatorDirective } from './recipe-title-validator.directive';
+import { RecipeEditTitleValidatorDirective } from './recipe-edit-title-validator.directive';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { RecipeTitleValidatorDirective } from './recipe-title-validator.directiv
     ModalComponent,
     RecipeFormComponent,
     RecipeTitleValidatorDirective,
+    RecipeEditTitleValidatorDirective,
   ],
   imports: [
     BrowserModule,

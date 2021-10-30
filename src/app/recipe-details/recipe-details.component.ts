@@ -3,6 +3,7 @@ import {  ActivatedRoute, Router } from '@angular/router';
 import { Output, EventEmitter } from '@angular/core';
 import { IRecipe } from '../recipe';
 import { LocalStorageService } from '../local-storage.service';
+import { ModalService } from '../modal.service';
 
 @Component({
   selector: 'app-recipe-details',
@@ -14,7 +15,7 @@ export class RecipeDetailsComponent implements OnInit {
   recipeTitle: string = 'Full recipe for';
   @Output() onDeletedRecipe = new EventEmitter();
 
-  constructor(private route: ActivatedRoute,  private router: Router, private storageService: LocalStorageService) {
+  constructor(private route: ActivatedRoute,  private router: Router, private storageService: LocalStorageService, private modalService: ModalService) {
     
    }
 
@@ -26,6 +27,10 @@ export class RecipeDetailsComponent implements OnInit {
     this.router.navigate(['/'])
   }
 
+  addRecipeFromForm(name: string, recipeFromForm: IRecipe): void{
+    this.storageService.edit(name, recipeFromForm);
+  }
+
   onDelete(name: string): void{
     this.storageService.delete(name);
     this.onBack();
@@ -35,8 +40,13 @@ export class RecipeDetailsComponent implements OnInit {
     console.log(this.storageService.getAll())
   }
 
+  showForm(){
+    this.modalService.open();
+  }
+
   ngOnInit(): void {
     const passedName = String(this.route.snapshot.paramMap.get('name'));
+    console.log(passedName)
     if(passedName){
       this.getRecipe(passedName)
     }  

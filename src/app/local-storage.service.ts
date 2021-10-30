@@ -30,13 +30,18 @@ export class LocalStorageService {
     this.recipesSubject.next(this.storedRecipes);
   }
   getAll(){
-    console.log(this.storedRecipes)
     return this.storedRecipes;
   }
   getRecipe(passedName: string){
     let recipeByName = this.storedRecipes.find(x => x.name === passedName);
+    // if (recipeByName == undefined){
+    //   recipeByName = {
+    //     name: "",
+    //     source: "",
+    //     img: ""
+    //   }
+    // }
     return recipeByName;
-
   } 
   
   delete(passedName: string){
@@ -45,6 +50,12 @@ export class LocalStorageService {
     
     localStorage.setItem(this.storageName, JSON.stringify(this.storedRecipes));
     this.recipesSubject.next(this.storedRecipes);
+  }
+
+  edit(passedName: string, recipe: IRecipe){
+    const idx = this.storedRecipes.findIndex(x => x.name === passedName);
+    console.log("from storage Serivce ", recipe );
+    Object.assign(this.storedRecipes[idx], recipe);
   }
 
 }

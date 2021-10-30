@@ -1,5 +1,5 @@
 import { Directive } from '@angular/core';
-import { FormControl, Validator, ValidatorFn, NG_VALIDATORS, Form } from '@angular/forms';
+import { FormControl, Validator, NG_VALIDATORS } from '@angular/forms';
 import { LocalStorageService } from './local-storage.service';
 
 @Directive({
@@ -22,7 +22,7 @@ export class RecipeTitleValidatorDirective implements Validator{
   }
 
   recipeTitleValidator(control: FormControl) {
-        if (!this.storageService.getRecipe(control.value)){
+        if (!this.storageService.getRecipe(control.value) ){
           return null;
         }
         else {

@@ -1,23 +1,50 @@
 <form #form="ngForm" (ngSubmit)="handleSubmit(form)">
-    <div class="form-group">
-        <label for="recipeTitle">
-            Recipe Title
-        </label>
-        <input id="recipeTitle" type="text" required
-        placeholder="Recipe title" 
-        name="recipeTitle"
-        #titleField="ngModel"
-        [(ngModel)]="recipe.name"
-        appRecipeTitleValidator
-        [class.field-error]="form.submitted && titleField.invalid"
-        >
-        <div *ngIf="form.submitted && titleField.hasError('required')">
-            Enter title
+    <ng-container
+        *ngIf="isAddMode; then AddRecipe; else EditRecipe">
+    </ng-container>
+    <ng-template #AddRecipe>
+        <div class="form-group">
+            <label for="recipeTitle">
+                Recipe Title
+            </label>
+            <input id="recipeTitle" type="text" required
+            placeholder="Recipe title"
+            name="recipeTitle"
+            #titleField="ngModel"
+            [(ngModel)]="recipe.name"
+            appRecipeTitleValidator
+            [class.field-error]="form.submitted && titleField.invalid"
+            >
+            <div *ngIf="form.submitted && titleField.hasError('required')">
+                Enter title
+            </div>
+            <div *ngIf="form.submitted && titleField.hasError('recipeTitleValidator')">
+                Title must be unique
+            </div>
         </div>
-        <div *ngIf="form.submitted && titleField.hasError('recipeTitleValidator')">
-            Title must be unique
+    </ng-template>
+    <ng-template #EditRecipe>
+        <div class="form-group">
+            <label for="recipeTitle">
+                Edit Recipe Title
+            </label>
+            <input id="recipeTitle" type="text" required
+            placeholder="Recipe title"
+            name="recipeTitle"
+            #titleField="ngModel"
+            [(ngModel)]="recipe.name"
+            appRecipeEditTitleValidator
+            [class.field-error]="form.submitted && titleField.invalid"
+            >
+            <div *ngIf="form.submitted && titleField.hasError('required')">
+                Enter title
+            </div>
+            <div *ngIf="form.submitted && titleField.hasError('recipeTitleValidator')">
+                Title must be unique. This title is already in use for other recipe.
+            </div>
         </div>
-    </div>
+    </ng-template>
+    
     <div class="form-group">
         <label for="recipeLink">
             Link to recipe

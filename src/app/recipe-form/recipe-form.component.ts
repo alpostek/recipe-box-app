@@ -1,8 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { IRecipe } from '../recipe';
 import { ModalService } from '../modal.service';
-import { FormControl, NgForm, NgModel } from '@angular/forms';
+import { Form, NgForm } from '@angular/forms';
 import { LocalStorageService } from '../local-storage.service';
+import { initialRecipes } from '../initial-recipes';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-form',
@@ -16,6 +18,7 @@ export class RecipeFormComponent implements OnInit {
   recipeTitle!: string;
   recipeLink!: string;
   recipeImage!: string;
+  isAddMode! : boolean;
 
   initialRecipe: IRecipe = {
     name: "",
@@ -23,22 +26,34 @@ export class RecipeFormComponent implements OnInit {
     img: ""
   }
 
-  recipe: IRecipe = {...this.initialRecipe}
+  recipe!: IRecipe;
 
-  constructor(private modalService: ModalService, private storageService: LocalStorageService) {
-   }
-
-  ngOnInit(): void {
-   
+  constructor(private route: ActivatedRoute, private modalService: ModalService, private storageService: LocalStorageService) {
+    
   }
 
+  ngOnInit(): void {
+    const passedName = String(this.route.snapshot.paramMap.get('name'));
+    const editableRecipe = this.storageService.getRecipe(passedName)
+    if(editableRecipe != undefined){
+      this.initialRecipe = editableRecipe;
+      this.isAddMode = false;
+    } else{
+      this.isAddMode = true;
+    }
+    this.recipe = {...this.initialRecipe}
+
+
+  }
+ 
+
   handleSubmit(form: NgForm){
-    console.log('in on Submit ', form.valid);
     if (form.valid){
       this.recipeTitle = this.recipeTitle;
       this.recipeLink = this.recipeLink;
       this.recipeImage = this.recipeImage;
       this.recipeAddEvent.emit(this.recipe);
+      console.log(this.recipe);
       this.modalService.close();
     }
   }
