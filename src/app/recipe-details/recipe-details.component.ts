@@ -12,7 +12,6 @@ import { ModalService } from '../modal.service';
 })
 export class RecipeDetailsComponent implements OnInit {
   recipe: IRecipe | undefined;
-  recipeTitle: string = 'Full recipe for';
   @Output() onDeletedRecipe = new EventEmitter();
 
   constructor(private route: ActivatedRoute,  private router: Router, private storageService: LocalStorageService, private modalService: ModalService) {
@@ -36,17 +35,15 @@ export class RecipeDetailsComponent implements OnInit {
     this.onBack();
   }
 
-  onAll(){
-    console.log(this.storageService.getAll())
-  }
-
   showForm(){
     this.modalService.open();
   }
 
   ngOnInit(): void {
-    const passedName = String(this.route.snapshot.paramMap.get('name'));
-    console.log(passedName)
+    let passedName;
+    this.route.paramMap.subscribe((param) =>{
+      passedName = String(param.get('name'));
+    })
     if(passedName){
       this.getRecipe(passedName)
     }  

@@ -2,5 +2,6 @@ export interface IRecipe {
  
     name: string,
     source: string,
-    img: string
+    img: string,
+    rating?: number
 }

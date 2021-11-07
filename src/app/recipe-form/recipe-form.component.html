@@ -40,7 +40,7 @@
                 Enter title
             </div>
             <div *ngIf="form.submitted && titleField.hasError('recipeTitleValidator')">
-                Title must be unique. This title is already in use for other recipe.
+                Title must be unique. This title is already in use for other recipe
             </div>
         </div>
     </ng-template>
@@ -64,6 +64,19 @@
         <input type="text" placeholder="Link to image"
         #imageField="ngModel" 
         name="recipeImage"  [(ngModel)]="recipe.img">
+    </div>
+    <div class="form-group">
+        <label for="recipeRating">Rating</label>
+        <input type="number" placeholder="Rate recipe on scale from 1 to 6"
+        min="1" max="6" step="1"
+        #ratingField="ngModel" 
+        pattern="^[-\d]\d*$"
+        name="recipeRating"  [(ngModel)]="recipe.rating"
+        [class.field-error]="form.submitted && ratingField.invalid"
+        >
+        <div *ngIf="form.submitted && ratingField.invalid">
+            Enter integer between 1 and 6
+        </div>
     </div>
     <button>Submit</button>
 </form>

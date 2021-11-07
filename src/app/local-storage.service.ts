@@ -34,13 +34,6 @@ export class LocalStorageService {
   }
   getRecipe(passedName: string){
     let recipeByName = this.storedRecipes.find(x => x.name === passedName);
-    // if (recipeByName == undefined){
-    //   recipeByName = {
-    //     name: "",
-    //     source: "",
-    //     img: ""
-    //   }
-    // }
     return recipeByName;
   } 
   
@@ -54,8 +47,9 @@ export class LocalStorageService {
 
   edit(passedName: string, recipe: IRecipe){
     const idx = this.storedRecipes.findIndex(x => x.name === passedName);
-    console.log("from storage Serivce ", recipe );
     Object.assign(this.storedRecipes[idx], recipe);
+    localStorage.setItem(this.storageName, JSON.stringify(this.storedRecipes));
+    this.recipesSubject.next(this.storedRecipes);
   }
 
 }

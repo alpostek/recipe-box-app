@@ -10,6 +10,9 @@
                 <a href='{{recipe.source}}' target="blank" class="recipe__link">
                     Link to recipe
                 </a>
+                <p>
+                    {{recipe.rating}}
+                </p>
                 <div style='background-image: url({{recipe.img}});'
                 class="recipe__image">
                     <a [routerLink]="['/', recipe.name]" class="recipe__detailsLink">

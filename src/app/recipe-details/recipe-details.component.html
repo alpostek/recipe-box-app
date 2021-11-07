@@ -2,6 +2,9 @@
     <div class="details__header" *ngIf='recipe'>
         {{recipe.name}}
         <a href="{{recipe.source}}">Link to recipe</a>
+        <p>
+            {{recipe.rating}}
+        </p>
         <div class="recipe__image" style='background-image: url({{recipe.img}});'></div>
         <button class="back" (click)='onBack()'>Back to list</button>
         <button class="delete" (click)='onDelete(recipe.name)'>Delete</button>
