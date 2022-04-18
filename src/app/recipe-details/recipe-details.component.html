@@ -1,15 +1,18 @@
-<div class="details__card">
-    <div class="details__header" *ngIf='recipe'>
-        {{recipe.name}}
-        <a href="{{recipe.source}}">Link to recipe</a>
-        <p>
-            {{recipe.rating}}
+<div class="details__card" *ngIf='recipe'>
+    <div class="details__header" >
+        <p class="card-title">{{recipe.name}}</p>
+        <a class="card-link" href="{{recipe.source}}">Link to recipe</a>
+        <p class="card-rating">
+            Rating (out of 6): {{recipe.rating}}
         </p>
-        <div class="recipe__image" style='background-image: url({{recipe.img}});'></div>
-        <button class="back" (click)='onBack()'>Back to list</button>
-        <button class="delete" (click)='onDelete(recipe.name)'>Delete</button>
-        <button class="edit" (click)='showForm()'>Edit</button>
+      </div>
+
+        <div class="card-image details__image" style='background-image: url({{recipe.img}});'></div>
+        <div class="details__buttons">
+          <button class="back button" (click)='onBack()'>Back to list</button>
+          <button class="delete button" (click)='onDelete(recipe.name)'>Delete</button>
+          <button class="edit button" (click)='showForm()'>Edit</button>
+        </div>
     </div>
-</div>
 <app-modal (addRecipeFromForm)="addRecipeFromForm(recipe!.name, $event)" >
 </app-modal>

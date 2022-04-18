@@ -5,10 +5,21 @@
     }
     &__listTitle{
        width: 100%;
-       padding: 15px 0px;
+       padding: var(--spacing-medium) 0px;
     }
     &__card{
-        flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: calc(33% - var(--spacing-big));
+      border: 1px solid var(--cyan-grey);
+      margin-bottom: var(--spacing-medium);
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      box-shadow: 0 6px 8px rgb(0 0 0 / 15%);
+      &:not(:nth-child(3)){
+        margin-right: var(--spacing-big);
+      }
     }
     &__detailsLink{
         display: block;

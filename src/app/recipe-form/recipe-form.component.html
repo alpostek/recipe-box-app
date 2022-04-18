@@ -5,7 +5,7 @@
     <ng-template #AddRecipe>
         <div class="form-group">
             <label for="recipeTitle">
-                Recipe Title
+                Recipe Title *
             </label>
             <input id="recipeTitle" type="text" required
             placeholder="Recipe title"
@@ -44,12 +44,12 @@
             </div>
         </div>
     </ng-template>
-    
+
     <div class="form-group">
         <label for="recipeLink">
-            Link to recipe
+            Link to recipe *
         </label>
-        <input type="text" placeholder="Link to recipe" required 
+        <input type="text" placeholder="Link to recipe" required
         name="recipeLink"
         [(ngModel)]="recipe.source"
         #linkField="ngModel"
@@ -62,14 +62,14 @@
     <div class="form-group">
         <label for="recipeImage">Link to image</label>
         <input type="text" placeholder="Link to image"
-        #imageField="ngModel" 
+        #imageField="ngModel"
         name="recipeImage"  [(ngModel)]="recipe.img">
     </div>
     <div class="form-group">
         <label for="recipeRating">Rating</label>
         <input type="number" placeholder="Rate recipe on scale from 1 to 6"
         min="1" max="6" step="1"
-        #ratingField="ngModel" 
+        #ratingField="ngModel"
         pattern="^[-\d]\d*$"
         name="recipeRating"  [(ngModel)]="recipe.rating"
         [class.field-error]="form.submitted && ratingField.invalid"
@@ -78,6 +78,6 @@
             Enter integer between 1 and 6
         </div>
     </div>
-    <button>Submit</button>
+    <button class="button form-button">Submit</button>
 </form>
 

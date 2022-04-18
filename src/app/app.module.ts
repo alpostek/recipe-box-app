@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; 
+import { FormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -30,7 +30,7 @@ import { RecipeEditTitleValidatorDirective } from './recipe-edit-title-validator
     RouterModule.forRoot([
       { path: '', component: RecipeListComponent  },
       { path: ':name', component: RecipeDetailsComponent}
-    ]),
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

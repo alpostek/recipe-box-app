@@ -1,25 +1,30 @@
 <div class="recipe__listContainer" >
-    <div class="recipe__list" *ngIf='recipes.length > 0'>
-        <p class="recipe__listTitle">
-            Have a look at your saved recipes...
-        </p>
-        <div class="recipe__card" *ngFor="let recipe of recipes">
-                <p>
-                    {{recipe.name}}
-                </p>
-                <a href='{{recipe.source}}' target="blank" class="recipe__link">
-                    Link to recipe
-                </a>
-                <p>
-                    {{recipe.rating}}
-                </p>
+  <p class="recipe__listTitle">
+    Have a look at your saved recipes...
+</p>
+    <ul class="recipe__list" *ngIf='recipes.length > 0'>
+
+        <li class="recipe__card" *ngFor="let recipe of recipes">
+          <div class="card-header">
+            <p class="card-title">
+              {{recipe.name}}
+          </p>
+          <a href='{{recipe.source}}' target="blank" class="card-link">
+              Link to recipe
+          </a>
+          <p class="card-rating">
+            Rating (out of 6):
+              {{recipe.rating}}
+          </p>
+          </div>
+
                 <div style='background-image: url({{recipe.img}});'
-                class="recipe__image">
+                class="recipe__image card-image">
                     <a [routerLink]="['/', recipe.name]" class="recipe__detailsLink">
                     </a>
                 </div>
-        </div>
-    </div>
+              </li>
+      </ul>
     <app-modal (addRecipeFromForm)="addRecipeFromForm($event)">
     </app-modal>
 </div>

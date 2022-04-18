@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ModalService } from '../modal.service';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-modal',

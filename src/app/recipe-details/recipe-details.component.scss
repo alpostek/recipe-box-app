@@ -1,0 +1,23 @@
+.details{
+  &__header{
+    padding: var(--spacing-small) var(--spacing-small) var(--spacing-medium);
+    border-bottom: 1px solid var(--cyan-grey);
+    margin-bottom: var(--spacing-big);
+  }
+  &__card{
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    margin-top: var(--spacing-big);
+  }
+  &__buttons{
+    display: flex;
+    padding: var(--spacing-big) var(--spacing-small) var(--spacing-medium);
+    justify-content: space-evenly;
+  }
+  &__image{
+    border-radius: var(--border-radius);
+    box-shadow: 0 6px 8px rgb(0 0 0 / 15%);
+  }
+}

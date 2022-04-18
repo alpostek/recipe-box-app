@@ -1,10 +1,13 @@
 <ng-container *ngIf="display$ | async as display">
-    <section [class.open]="display === true" 
+    <section [class.open]="display === true"
             (click)="close()">
             <div class="modal" (click)="$event.stopPropagation()">
-                    <button class="close" (click)="close()" >close</button>
+                    <button class="close" (click)="close()" >
+                  <span class="material-icons md-18">
+                  close
+                  </span></button>
                     <app-recipe-form (recipeAddEvent)="passDataFromFormToList($event)"></app-recipe-form>
             </div>
     </section>
 </ng-container>
-    
+
