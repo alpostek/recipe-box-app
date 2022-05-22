@@ -15,10 +15,10 @@
             appRecipeTitleValidator
             [class.field-error]="form.submitted && titleField.invalid"
             >
-            <div *ngIf="form.submitted && titleField.hasError('required')">
+            <div class="error" *ngIf="form.submitted && titleField.hasError('required')">
                 Enter title
             </div>
-            <div *ngIf="form.submitted && titleField.hasError('recipeTitleValidator')">
+            <div class="error" *ngIf="form.submitted && titleField.hasError('recipeTitleValidator')">
                 Title must be unique
             </div>
         </div>
@@ -36,10 +36,10 @@
             appRecipeEditTitleValidator
             [class.field-error]="form.submitted && titleField.invalid"
             >
-            <div *ngIf="form.submitted && titleField.hasError('required')">
+            <div class="error" *ngIf="form.submitted && titleField.hasError('required')">
                 Enter title
             </div>
-            <div *ngIf="form.submitted && titleField.hasError('recipeTitleValidator')">
+            <div class="error" *ngIf="form.submitted && titleField.hasError('recipeTitleValidator')">
                 Title must be unique. This title is already in use for other recipe
             </div>
         </div>
@@ -55,7 +55,7 @@
         #linkField="ngModel"
         [class.field-error]="form.submitted && linkField.invalid"
         >
-        <div *ngIf="form.submitted && linkField.invalid">
+        <div class="error" *ngIf="form.submitted && linkField.invalid">
             Enter link
         </div>
     </div>
@@ -74,7 +74,7 @@
         name="recipeRating"  [(ngModel)]="recipe.rating"
         [class.field-error]="form.submitted && ratingField.invalid"
         >
-        <div *ngIf="form.submitted && ratingField.invalid">
+        <div class="error" *ngIf="form.submitted && ratingField.invalid">
             Enter integer between 1 and 6
         </div>
     </div>

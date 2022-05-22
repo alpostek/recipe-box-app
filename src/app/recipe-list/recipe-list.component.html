@@ -5,10 +5,13 @@
     <ul class="recipe__list" *ngIf='recipes.length > 0'>
 
         <li class="recipe__card" *ngFor="let recipe of recipes">
+          <div class="recipe__cardContent">
+
+
           <div class="card-header">
-            <p class="card-title">
+            <h3 class="card-title">
               {{recipe.name}}
-          </p>
+            </h3>
           <a href='{{recipe.source}}' target="blank" class="card-link">
               Link to recipe
           </a>
@@ -23,7 +26,8 @@
                     <a [routerLink]="['/', recipe.name]" class="recipe__detailsLink">
                     </a>
                 </div>
-              </li>
+              </div>
+            </li>
       </ul>
     <app-modal (addRecipeFromForm)="addRecipeFromForm($event)">
     </app-modal>

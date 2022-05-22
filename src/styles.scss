@@ -1,26 +1,43 @@
+
 /* You can add global styles to this file, and also import other style files */
+@import './variables.scss';
+
 html {
 	box-sizing: border-box;
 	font-size: 16px;
+  font-family: 'Lato', sans-serif;
+  background-color: var(--cyan);
   }
-  
+
   *, *:before, *:after {
 	box-sizing: inherit;
   }
-  
+
   body, h1, h2, h3, h4, h5, h6, p, ol, ul {
 	margin: 0;
 	padding: 0;
 	font-weight: normal;
   }
-  
+
   ol, ul {
 	list-style: none;
   }
-  
+
   img {
 	max-width: 100%;
 	height: auto;
+  }
+
+  h1{
+    font-size: 2rem;
+  }
+
+  h2{
+    font-size: 1.2rem;
+  }
+
+  h3{
+    font-size: 1rem;
   }
 
   .container{
@@ -29,15 +46,59 @@ html {
     &--navbar{
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+      @media(min-width: 599px){
+        flex-direction: row;
+      }
     }
   }
 
   .recipe__image{
-    width: 300px;
-    height: 200px;
-    background-size: cover;
+    margin: 0 auto;
 }
 
 .button{
   cursor: pointer;
+  background-color: var(--cyan);
+  border: 2px solid transparent;
+  border-radius: 45px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 15%);
+  color: #fff;
+  outline: none;
+  padding: 10px 20px;
+  &--block{
+    display: block;
+  }
+}
+
+.card-title{
+  font-weight: bold;
+  color: var(--black-pearl);
+  padding: var(--spacing-small);
+}
+
+.card-link{
+  padding: 0px var(--spacing-small);
+  color: var(--cyan-grey);
+}
+
+.card-rating{
+  padding: var(--spacing-small);
+}
+
+.card-header{
+  min-height: 100px;
+}
+
+.card-image{
+  width: 300px;
+  height: 200px;
+  background-size: cover;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.error{
+  color: red;
 }

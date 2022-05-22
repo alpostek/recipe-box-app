@@ -1,9 +1,9 @@
 input{
     margin: var(--spacing-x-small) 0;
-    padding: 5px;
+    padding: var(--spacing-small) var(--spacing-x-small);
     width: 250px;
-    border-radius: var(--border-radius);
-    border: 2px solid var(--cyan-grey)
+    border: none;
+    border-bottom: 2px solid var(--cyan-grey);
   }
 
   .field-error{
