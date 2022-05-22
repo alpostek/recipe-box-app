@@ -9,10 +9,10 @@ import { IRecipe } from '../recipe';
 })
 export class RecipeListComponent implements OnInit {
   recipes: IRecipe[] = [];
-  constructor(private storageService: LocalStorageService ) { 
-    
+  constructor(private storageService: LocalStorageService ) {
+
   }
-  
+
   getRecipes():void{
     this.recipes = this.storageService.getAll();
   }
