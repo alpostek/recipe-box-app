@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { AuthService } from './auth/auth.service';
 import { LocalStorageService } from './local-storage.service';
 import { ModalService } from './modal.service';
 
@@ -8,11 +9,12 @@ import { ModalService } from './modal.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'recipe-box-app';
   public showAddButton: boolean = true;
 
-  constructor(private modalService: ModalService, private router: Router, private storageService: LocalStorageService){
+  constructor(private modalService: ModalService, private router: Router, private storageService: LocalStorageService,
+    private auth: AuthService){
     router.events.subscribe(e => {
      if(e instanceof NavigationEnd){
       if(this.router.url !== '/'){
@@ -24,14 +26,22 @@ export class AppComponent {
     })
   }
 
-  showForm(){
+  showForm(): void{
     this.modalService.open();
   }
-  clearList(){
+  clearList(): void{
     this.storageService.deleteAll();
   }
-  resetToDefault(){
+  resetToDefault(): void{
     this.storageService.resetToDefault();
   }
+  onLogout(): void{
+    this.auth.logout();
+  }
+
+  ngOnInit(): void {
+    this.auth.autologin();
+    console.log()
+  } 
 }
 

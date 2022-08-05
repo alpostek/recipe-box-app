@@ -12,6 +12,8 @@ import { ModalComponent } from './modal/modal.component';
 import { RecipeFormComponent } from './recipe-form/recipe-form.component';
 import { RecipeTitleValidatorDirective } from './recipe-title-validator.directive';
 import { RecipeEditTitleValidatorDirective } from './recipe-edit-title-validator.directive';
+import { AuthComponent } from './auth/auth.component';
+import { AuthGuard } from './auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -22,13 +24,17 @@ import { RecipeEditTitleValidatorDirective } from './recipe-edit-title-validator
     RecipeFormComponent,
     RecipeTitleValidatorDirective,
     RecipeEditTitleValidatorDirective,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
     CommonModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: RecipeListComponent  },
+      { path: '', component: RecipeListComponent, canActivate: [AuthGuard]},
+      {path: 'login', component: AuthComponent},
+      {path: 'recipes', component: RecipeListComponent},
+      {path: 'auth', component: AuthComponent},
       { path: ':name', component: RecipeDetailsComponent}
     ])
   ],

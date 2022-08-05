@@ -70,6 +70,9 @@ html {
   &--block{
     display: block;
   }
+  &--logout{
+    background-color: var(--maroon);
+  }
 }
 
 .card-title{
