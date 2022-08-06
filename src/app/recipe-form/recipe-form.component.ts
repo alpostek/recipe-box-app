@@ -51,7 +51,7 @@ export class RecipeFormComponent implements OnInit {
   }
  
 
-  handleSubmit(form: NgForm){
+  handleSubmit(form: NgForm): void{
     if (form.valid){
 
       if(!this.isAddMode){

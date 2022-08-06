@@ -12,14 +12,15 @@ export class AuthService {
   loginStatus = new BehaviorSubject<boolean>(false);
   isLoggedIn: boolean = false;
 
-  login(username: string, password: string){
+  login(username: string, password: string) : void{
     this.isLoggedIn = username === 'admin' && password === 'admin';
     localStorage.setItem('isLoggedIn', this.isLoggedIn ? 'true' : 'false');
-    this.loginStatus.next(true);
-    this.router.navigate(['/']);
+    this.loginStatus.next(this.isLoggedIn);
+    if(this.isLoggedIn) this.router.navigate(['/']);
+    
   }
 
-  autologin(){
+  autologin() : void{
     const loggedData = JSON.parse(localStorage.getItem('isLoggedIn') as string);
     if(!loggedData){
       return;
